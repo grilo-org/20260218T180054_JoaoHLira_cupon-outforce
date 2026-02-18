@@ -1,0 +1,21 @@
+services:
+  postgres:
+    container_name: ecommerce-db
+    image: 'postgres:17'
+    environment:
+      - 'POSTGRES_DB=ecommerce-db'
+      - 'POSTGRES_PASSWORD=postgres'
+      - 'POSTGRES_USER=postgres'
+    volumes:
+      - postgres-db-volume:/var/lib/postgresql/data
+    ports:
+      - '5432:5432'
+    networks:
+      - ecommerce-network
+
+volumes:
+  postgres-db-volume:
+
+networks:
+  ecommerce-network:
+    driver: bridge
